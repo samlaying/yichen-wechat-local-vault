@@ -48,7 +48,7 @@ tmp/                              # 临时区:处理过程中的中间产物与�
 2. 落 raw    按对象导出:群/私聊增量窗,收藏全量快照,朋友圈按联系人
 3. 话题处理   读 raw 新窗 → 写 topics/{对象}/{日期区间}-话题梳理.md
 4. 分类挂载   新话题挂进 categories 索引,重写受影响分类的综述
-5. 发布站点   build_site.py 生成 → push 到 wechat-vault-site 仓库(Pages 自动部署)
+5. 发布站点   build_site.py 生成 → push 到站点仓库(私有,GitHub Pages 自动部署)
 ```
 
 站点发布:
@@ -58,7 +58,7 @@ python3 scripts/build_site.py                        # 生成到 {data-root}/tmp
 cd ~/Documents/wechat-local-vault/tmp/site && git add -A && git commit -m "site: update" && git push
 ```
 
-线上地址: https://samlaying.github.io/wechat-vault-site/ (仓库 samlaying/wechat-vault-site)。
+线上地址:<你的站点域名>(站点仓库为私有,不随代码公开)。
 **raw 层永不进站点和仓库**;站点只包含 topics/categories 衍生内容。
 
 要点:
