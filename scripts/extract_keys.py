@@ -23,7 +23,16 @@ from pathlib import Path
 
 KEYS_FILE = Path("~/.config/wechat-keys.json").expanduser()
 CONFIG_FILE = Path("~/.config/wechat-local-vault.json").expanduser()
-WECHAT_APP = Path("/Applications/微信.app")
+
+def _detect_wechat_app() -> Path:
+    candidates = (Path("/Applications/微信.app"), Path("/Applications/WeChat.app"))
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
+
+
+WECHAT_APP = _detect_wechat_app()
 WECHAT_COPY = Path("~/Desktop/WeChat.app").expanduser()
 FRIDA_LOG = Path("/tmp/wechat_frida_keys.log")
 DEFAULT_VAULT_DIR = Path("~/Library/Application Support/wechat-local-vault").expanduser()

@@ -187,6 +187,9 @@ python3 {{SKILL_DIR}}/scripts/export_chat.py --chat-id "contact_username" --sinc
 
 - `scripts/snapshot_reader.py`：Windows 离线明文快照验证、查询与导出后端。
 - `scripts/wechat_schema.py`：两种后端共用的消息表名与字段别名映射。
+- `scripts/fetch_articles.py`：公众号文章转 Markdown(远程 MCP,失败降级不影响主流程)。
+- `scripts/build_site.py`：分析站构建(群聊公开 + 私聊 AES-GCM 加密双区)。
+- `scripts/auto_update.py`：定时流水线(增量→窗口导出→模型摘要→规则过滤→站点推送)。
 
 - `scripts/vault_cli.py`：统一本地查询入口；吸收 WeChat CLI 的常用命令形态，并增加朋友圈与摘要素材包。
 - `scripts/extract_keys.py`：本机 key 捕获、复用和匹配。

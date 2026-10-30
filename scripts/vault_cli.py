@@ -991,7 +991,8 @@ def command_digest_source(args: argparse.Namespace) -> None:
     if not group or not group.get("is_group"):
         raise SystemExit(f"找不到群聊: {args.group}")
 
-    data_root = Path(args.data_root).expanduser() if args.data_root else Path.cwd() / "wechat"
+    default_root = Path("~/Documents/wechat-local-vault/raw/_digest").expanduser()
+    data_root = Path(args.data_root).expanduser() if args.data_root else default_root
     folder = digest_folder(data_root, group)
     folder.mkdir(parents=True, exist_ok=True)
     for child in ("profiles", "profiles-roast", "imgs", "sources"):
@@ -1315,7 +1316,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--start", help="开始时间 YYYY-MM-DD [HH:MM[:SS]]")
     p.add_argument("--end", help="结束时间 YYYY-MM-DD [HH:MM[:SS]]")
     p.add_argument("--since-last", action="store_true", help="优先从该群 history.json 的上次摘要时间继续")
-    p.add_argument("--data-root", help="摘要归档根目录，默认当前项目的 wechat/")
+    p.add_argument("--data-root", help="摘要归档根目录，默认 ~/Documents/wechat-local-vault/raw/_digest")
     p.add_argument("--limit", type=int, default=5000)
     p.add_argument("--media", action="store_true", help="尝试附带本地文件路径提示")
     p.add_argument("--format", choices=["json", "text"], default="json")
